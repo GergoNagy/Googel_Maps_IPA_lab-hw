@@ -11,16 +11,16 @@ var initialize = function () {
         "Tap on the Line",
         contentString);
 
-     //   { lat: 47.6695253, lng: 17.5886452 }
-    
-    var gyor = { lat: 47.6695253, lng: 17.5886452 }
-
     var takeMeThere = document.querySelector('#recenter')
     takeMeThere.addEventListener('click', mainMap.takeMeThereFun )
 
+    var myPosition = document.querySelector('#my-position')
+    myPosition.addEventListener('click', mainMap.myPos)
 
+    
     mainMap.addClickEvent();
-
+    
+    
    
 
 }

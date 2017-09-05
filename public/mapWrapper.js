@@ -30,7 +30,7 @@ MapWrapper.prototype = {
             content: contentString
         });
     },
-   
+
     addClickEvent: function () {
         google.maps.event.addListener(this.googleMap, 'click', function (event) {
             console.log(event);
@@ -54,10 +54,35 @@ MapWrapper.prototype = {
     takeMeThereFun: function (coords) {
         var container = document.getElementById('main-map');
         this.googleMap = new google.maps.Map(container, {
-            center: { lat: 47.6695253, lng: 17.5886452 }, 
-            zoom: 10 
+            center: { lat: 47.6695253, lng: 17.5886452 },
+            zoom: 11
         });
+    },
 
+    myPos: function () {
+        var mapOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById('main-map'), mapOptions);
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            var geolocate = new google.maps.LatLng(
+                position.coords.latitude, position.coords.longitude);
+
+            var infowindow = new google.maps.InfoWindow({
+                map: map,
+                position: geolocate,
+                content:'<h2>I find you Dude!</h2>'
+            });
+
+            map.setCenter(geolocate);
+
+        });
     }
+
+
+
 }
 
