@@ -7,13 +7,30 @@ var MapWrapper = function (container, coords, zoom) {
 }
 
 MapWrapper.prototype = {
-    addMarker: function (coords) {
+    addMarker: function (coords, title, contentString) {
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
         var marker = new google.maps.Marker({
             position: coords,
-            map: this.googleMap
+            map: this.googleMap,
+            title: title
         });
         this.markers.push(marker);
+
+        marker.addListener('click', function () {
+            infowindow.open(this.goggleMap, marker);
+        });
     },
+
+    infoWindow: function (contentString) {
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+    },
+   
     addClickEvent: function () {
         google.maps.event.addListener(this.googleMap, 'click', function (event) {
             console.log(event);
@@ -32,5 +49,15 @@ MapWrapper.prototype = {
         this.markers.forEach(function (marker) {
             marker.setAnimation(google.maps.Animation.BOUNCE)
         })
+    },
+
+    takeMeThereFun: function (coords) {
+        var container = document.getElementById('main-map');
+        this.googleMap = new google.maps.Map(container, {
+            center: { lat: 47.6695253, lng: 17.5886452 }, 
+            zoom: 10 
+        });
+
     }
 }
+
