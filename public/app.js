@@ -18,9 +18,14 @@ var initialize = function () {
     myPosition.addEventListener('click', mainMap.myPos)
 
     
+    //cc sol
+    // mainMap.addInfoWindow(center, "Hey dude")
+    //
+
+
     mainMap.addClickEvent();
     
-    
+   
    
 
 }

@@ -16,7 +16,8 @@ MapWrapper.prototype = {
         var marker = new google.maps.Marker({
             position: coords,
             map: this.googleMap,
-            title: title
+            title: title,
+            animation: google.maps.Animation.DROP
         });
         this.markers.push(marker);
 
@@ -80,8 +81,18 @@ MapWrapper.prototype = {
             map.setCenter(geolocate);
 
         });
-    }
-
+    },
+    //cc solution
+    // addInfoWindow: function(coords, text){
+    //     var marker = this.addMarker(coords);
+    //     marker.addClickEvent('click', function(){
+    //         var infoWindow = new google.maps.infoWindow({
+    //             content: text
+    //         });
+    //         infoWindow.open(this.map, marker);
+    //     })
+    // }
+    //end of cc sol
 
 
 }
